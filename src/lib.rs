@@ -11,9 +11,6 @@
 pub mod linux_x64;
 
 /// OpenDSS `ActiveClass*` functions.
-// TODO: eventually remove
-#[allow(unused_variables)]
-#[allow(unused_imports)]
 pub mod active_class;
 /// OpenDSS `Bus*` functions.
 // TODO: eventually remove
