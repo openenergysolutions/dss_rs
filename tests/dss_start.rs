@@ -1,4 +1,4 @@
-use dss_rs::linux_x64 as dss_rs;
+use dss_rs::linux_x64::bindings as dss_rs;
 
 // Verify C API bindings can be called.
 fn main() {
