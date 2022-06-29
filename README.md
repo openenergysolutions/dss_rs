@@ -14,9 +14,22 @@ This project is unaffiliated with the DSS_Extensions organization in any way.
 
 ## Building
 
+As easy as `cargo build`
+
+## Sanity Test
+
+If everything has built successfully, you will want to perform a sanity test to
+make sure that the dynamically linked `dss_capi` libs can actually be called.
+
+First, export the pre-built binaries path to `LD_LIBRARY_PATH`:
 ```
-cargo build
+export LD_LIBRARY_PATH=$PWD/lib/linux_x64:LD_LIBRARY_PATH
 ```
 
+Then run `cargo test dss_start`.
+
+
+
 [DSS_EXTENSIONS]:https://github.com/dss-extensions/dss_capi
+
 
