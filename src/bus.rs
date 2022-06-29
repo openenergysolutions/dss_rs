@@ -1,100 +1,103 @@
-pub fn get_Name() -> *mut ::std::os::raw::c_char {
+#[cfg(feature = "linux_x64")]
+use crate::linux_x64 as dss_rs;
+
+pub fn get_name() -> *mut ::std::os::raw::c_char {
     todo!()
 }
 
-pub fn get_NumNodes() -> i32 {
+pub fn get_num_nodes() -> i32 {
     todo!()
 }
 
-pub fn get_SeqVoltages(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_seq_voltages(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_SeqVoltages_Gr() {
+pub fn get_seq_voltages_gr() {
     todo!()
 }
 
-pub fn get_Voltages(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_voltages(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_Voltages_Gr() {
+pub fn get_voltages_gr() {
     todo!()
 }
 
-pub fn get_Nodes(result_ptr: *mut *mut i32, result_count: *mut i32) {
+pub fn get_nodes(result_ptr: *mut *mut i32, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_Nodes_Gr() {
+pub fn get_nodes_gr() {
     todo!()
 }
 
-pub fn get_Isc(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_isc(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_Isc_Gr() {
+pub fn get_isc_gr() {
     todo!()
 }
 
-pub fn get_Voc(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_voc(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_Voc_Gr() {
+pub fn get_voc_gr() {
     todo!()
 }
 
-pub fn get_kVBase() -> f64 {
+pub fn get_kv_base() -> f64 {
     todo!()
 }
 
-pub fn get_puVoltages(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_pu_voltages(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_puVoltages_Gr() {
+pub fn get_pu_voltages_gr() {
     todo!()
 }
 
-pub fn get_Zsc0(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_zsc0(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_Zsc0_Gr() {
+pub fn get_zsc0_gr() {
     todo!()
 }
 
-pub fn get_Zsc1(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_zsc1(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_Zsc1_Gr() {
+pub fn get_zsc1_gr() {
     todo!()
 }
 
-pub fn get_ZscMatrix(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_zsc_matrix(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_ZscMatrix_Gr() {
+pub fn get_zsc_matrix_gr() {
     todo!()
 }
 
-pub fn Zscrefresh() -> u16 {
+pub fn zscrefresh() -> u16 {
     todo!()
 }
 
-pub fn get_YscMatrix(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_ysc_matrix(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_YscMatrix_Gr() {
+pub fn get_ysc_matrix_gr() {
     todo!()
 }
 
-pub fn get__coorddefined() -> u16 {
+pub fn get_coorddefined() -> u16 {
     todo!()
 }
 
@@ -102,7 +105,7 @@ pub fn get_x() -> f64 {
     todo!()
 }
 
-pub fn Set_x(Value: f64) {
+pub fn set_x(value: f64) {
     todo!()
 }
 
@@ -110,95 +113,95 @@ pub fn get_y() -> f64 {
     todo!()
 }
 
-pub fn Set_y(Value: f64) {
+pub fn set_y(value: f64) {
     todo!()
 }
 
-pub fn get_Distance() -> f64 {
+pub fn get_distance() -> f64 {
     todo!()
 }
 
-pub fn getUniqueNodeNumber(StartNumber: i32) -> i32 {
+pub fn get_unique_node_number(start_number: i32) -> i32 {
     todo!()
 }
 
-pub fn get__cplxSeqVoltages(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_cplx_seq_voltages(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get__cplxSeqVoltages_Gr() {
+pub fn get_cplx_seq_voltages_gr() {
     todo!()
 }
 
-pub fn get_Int_Duration() -> f64 {
+pub fn get_int_duration() -> f64 {
     todo!()
 }
 
-pub fn get_Lambda() -> f64 {
+pub fn get_lambda() -> f64 {
     todo!()
 }
 
-pub fn get__cust_Duration() -> f64 {
+pub fn get_cust_duration() -> f64 {
     todo!()
 }
 
-pub fn get__cust_Interrupts() -> f64 {
+pub fn get_cust_interrupts() -> f64 {
     todo!()
 }
 
-pub fn get_N__customers() -> i32 {
+pub fn get_n_customers() -> i32 {
     todo!()
 }
 
-pub fn get_N_interrupts() -> f64 {
+pub fn get_n_interrupts() -> f64 {
     todo!()
 }
 
-pub fn get_puVLL(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_pu_vll(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_puVLL_Gr() {
+pub fn get_pu_vll_gr() {
     todo!()
 }
 
-pub fn get_VLL(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_vll(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_VLL_Gr() {
+pub fn get_vll_gr() {
     todo!()
 }
 
-pub fn get_puVmagAngle(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_pu_vmag_angle(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_puVmagAngle_Gr() {
+pub fn get_pu_vmag_angle_gr() {
     todo!()
 }
 
-pub fn get_VMagAngle(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub fn get_vmag_angle(result_ptr: *mut *mut f64, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_VMagAngle_Gr() {
+pub fn get_vmag_angle_gr() {
     todo!()
 }
 
-pub fn get_TotalMiles() -> f64 {
+pub fn get_total_miles() -> f64 {
     todo!()
 }
 
-pub fn get_SectionID() -> i32 {
+pub fn get_section_id() -> i32 {
     todo!()
 }
 
-pub fn get_LineList(result_ptr: *mut *mut *mut ::std::os::raw::c_char, result_count: *mut i32) {
+pub fn get_line_list(result_ptr: *mut *mut *mut ::std::os::raw::c_char, result_count: *mut i32) {
     todo!()
 }
 
-pub fn get_LineList_Gr() {
+pub fn get_line_list_gr() {
     todo!()
 }
 
