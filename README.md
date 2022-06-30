@@ -9,7 +9,7 @@ This crate provides a non-`unsafe` (re: safe) Rust API on top of `unsafe` bindin
 
 We rely on pre-built binaries, which are included in the `lib` folder. The only target currently supported is `linux_x64`.
 
-This project is unaffiliated with the DSS_Extensions organization in any way.
+This project is unaffiliated with the DSS_Extensions organization.
 
 
 ## Building
