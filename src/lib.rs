@@ -29,6 +29,8 @@ pub mod ckt_element;
 pub mod dss;
 /// OpenDSS `DSS_Executive*` functions.
 pub mod dss_executive;
+/// OpenDSS error handling.
+pub mod dss_result;
 /// OpenDSS `Loads*` functions.
 pub mod loads;
 /// OpenDSS `RegControls*` functions.
