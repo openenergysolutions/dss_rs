@@ -1,5 +1,5 @@
 #[cfg(feature = "linux_x64")]
-use crate::linux_x64 as dss_rs;
+use crate::linux_x64::bindings as dss_c;
 
 pub fn get_name() -> *mut ::std::os::raw::c_char {
     todo!()
