@@ -13,9 +13,6 @@ pub mod linux_x64;
 /// OpenDSS `ActiveClass*` functions.
 pub mod active_class;
 /// OpenDSS `Bus*` functions.
-// Attributes indicate module in-progress
-#[allow(unused_variables)]
-#[allow(unused_imports)]
 pub mod bus;
 /// OpenDSS `CapControls*` functions.
 #[cfg(feature = "cap_controls")]
