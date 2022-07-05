@@ -1,21 +1,30 @@
-extern "C" {
-    pub fn DSS_Executive_Get_Command(i: i32) -> *mut ::std::os::raw::c_char;
+#[cfg(feature = "linux_x64")]
+use crate::linux_x64::bindings as dss_c;
+
+pub unsafe fn get_command(i: i32) -> *mut ::std::os::raw::c_char {
+    dss_c::DSS_Executive_Get_Command(i)
 }
-extern "C" {
-    pub fn DSS_Executive_Get_NumCommands() -> i32;
+
+pub unsafe fn get_num_commands() -> i32 {
+    dss_c:::DSS_Executive_Get_NumCommands()
 }
-extern "C" {
-    pub fn DSS_Executive_Get_NumOptions() -> i32;
+
+pub unsafe fn get_num_options() -> i32 {
+    dss_c::DSS_Executive_Get_NumOptions()
 }
-extern "C" {
-    pub fn DSS_Executive_Get_Option(i: i32) -> *mut ::std::os::raw::c_char;
+
+pub unsafe fn get_option(i: i32) -> *mut ::std::os::raw::c_char {
+    dss_c::DSS_Executive_Get_Option(i)
 }
-extern "C" {
-    pub fn DSS_Executive_Get_CommandHelp(i: i32) -> *mut ::std::os::raw::c_char;
+
+pub unsafe fn get_command_help(i: i32) -> *mut ::std::os::raw::c_char {
+    dss_c::DSS_Executive_Get_CommandHelp(i)
 }
-extern "C" {
-    pub fn DSS_Executive_Get_OptionHelp(i: i32) -> *mut ::std::os::raw::c_char;
+
+pub unsafe fn get_option_help(i: i32) -> *mut ::std::os::raw::c_char {
+    dss_c::DSS_Executive_Get_OptionHelp(i)
 }
-extern "C" {
-    pub fn DSS_Executive_Get_OptionValue(i: i32) -> *mut ::std::os::raw::c_char;
+
+pub unsafe fn get_option_value(i: i32) -> *mut ::std::os::raw::c_char {
+    dss_c::DSS_Executive_Get_OptionValue(i)
 }
