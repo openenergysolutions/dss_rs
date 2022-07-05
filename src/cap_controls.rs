@@ -1,111 +1,149 @@
-extern "C" {
-    pub fn CapControls_Get_AllNames(
-        ResultPtr: *mut *mut *mut ::std::os::raw::c_char,
-        ResultCount: *mut i32,
-    );
+#[cfg(feature = "linux_x64")]
+use crate::linux_x64::bindings as dss_c;
+
+pub unsafe fn get_all_names(
+    result_ptr: *mut *mut *mut ::std::os::raw::c_char,
+    result_count: *mut i32,
+) {
+    dss_c::CapControls_Get_AllNames(result_ptr, result_count);
 }
-extern "C" {
-    pub fn CapControls_Get_AllNames_GR();
+
+pub unsafe fn get_all_names_gr() {
+    dss_c::CapControls_Get_AllNames_GR();
 }
-extern "C" {
-    pub fn CapControls_Get_Capacitor() -> *mut ::std::os::raw::c_char;
+
+pub unsafe fn get_capacitor() -> *mut ::std::os::raw::c_char {
+    dss_c::CapControls_Get_Capacitor()
 }
-extern "C" {
-    pub fn CapControls_Get_CTratio() -> f64;
+
+pub unsafe fn get_ct_ratio() -> f64 {
+    dss_c::CapControls_Get_CTratio()
 }
-extern "C" {
-    pub fn CapControls_Get_DeadTime() -> f64;
+
+pub unsafe fn get_dead_time() -> f64 {
+    dss_c::CapControls_Get_DeadTime()
 }
-extern "C" {
-    pub fn CapControls_Get_Delay() -> f64;
+
+pub unsafe fn get_delay() -> f64 {
+    dss_c::CapControls_Get_Delay()
 }
-extern "C" {
-    pub fn CapControls_Get_DelayOff() -> f64;
+
+pub unsafe fn get_delay_off() -> f64 {
+    dss_c::CapControls_Get_DelayOff()
 }
-extern "C" {
-    pub fn CapControls_Get_First() -> i32;
+
+pub unsafe fn get_first() -> i32 {
+    dss_c::CapControls_Get_First()
 }
-extern "C" {
-    pub fn CapControls_Get_Mode() -> i32;
+
+pub unsafe fn get_mode() -> i32 {
+    dss_c::CapControls_Get_Mode()
 }
-extern "C" {
-    pub fn CapControls_Get_MonitoredObj() -> *mut ::std::os::raw::c_char;
+
+pub unsafe fn get_monitored_obj() -> *mut ::std::os::raw::c_char {
+    dss_c::CapControls_Get_MonitoredObj()
 }
-extern "C" {
-    pub fn CapControls_Get_MonitoredTerm() -> i32;
+
+pub unsafe fn get_monitored_term() -> i32 {
+    dss_c::CapControls_Get_MonitoredTerm()
 }
-extern "C" {
-    pub fn CapControls_Get_Name() -> *mut ::std::os::raw::c_char;
+
+pub unsafe fn get_name() -> *mut ::std::os::raw::c_char {
+    dss_c::CapControls_Get_Name()
 }
-extern "C" {
-    pub fn CapControls_Get_Next() -> i32;
+
+pub unsafe fn get_next() -> i32 {
+    dss_c::CapControls_Get_Next()
 }
-extern "C" {
-    pub fn CapControls_Get_OFFSetting() -> f64;
+
+pub unsafe fn get_off_setting() -> f64 {
+    dss_c::CapControls_Get_OFFSetting()
 }
-extern "C" {
-    pub fn CapControls_Get_ONSetting() -> f64;
+
+pub unsafe fn get_on_setting() -> f64 {
+    dss_c::CapControls_Get_ONSetting()
 }
-extern "C" {
-    pub fn CapControls_Get_PTratio() -> f64;
+
+pub unsafe fn get_pt_ratio() -> f64 {
+    dss_c::CapControls_Get_PTratio()
 }
-extern "C" {
-    pub fn CapControls_Get_UseVoltOverride() -> u16;
+
+pub unsafe fn get_use_volt_override() -> u16 {
+    dss_c::CapControls_Get_UseVoltOverride()
 }
-extern "C" {
-    pub fn CapControls_Get_Vmax() -> f64;
+
+pub unsafe fn get_vmax() -> f64 {
+    dss_c::CapControls_Get_Vmax()
 }
-extern "C" {
-    pub fn CapControls_Get_Vmin() -> f64;
+
+pub unsafe fn get_vmin() -> f64 {
+    dss_c::CapControls_Get_Vmin()
 }
-extern "C" {
-    pub fn CapControls_Set_Capacitor(Value: *mut ::std::os::raw::c_char);
+
+pub unsafe fn set_capacitor(value: *mut ::std::os::raw::c_char) {
+    dss_c::CapControls_Set_Capacitor(value);
 }
-extern "C" {
-    pub fn CapControls_Set_CTratio(Value: f64);
+
+pub unsafe fn set_ct_ratio(value: f64) {
+    dss_c::CapControls_Set_CTratio(value);
 }
-extern "C" {
-    pub fn CapControls_Set_DeadTime(Value: f64);
+
+pub unsafe fn set_dead_time(value: f64) {
+    dss_c::CapControls_Set_DeadTime(value);
 }
-extern "C" {
-    pub fn CapControls_Set_Delay(Value: f64);
+
+pub unsafe fn set_delay(value: f64) {
+    dss_c::CapControls_Set_Delay(value);
 }
-extern "C" {
-    pub fn CapControls_Set_DelayOff(Value: f64);
+
+pub unsafe fn set_delay_off(value: f64) {
+    dss_c::CapControls_Set_DelayOff(value);
 }
-extern "C" {
-    pub fn CapControls_Set_Mode(Value: i32);
+
+pub unsafe fn set_mode(value: i32) {
+    dss_c::CapControls_Set_Mode(value);
 }
-extern "C" {
-    pub fn CapControls_Set_MonitoredObj(Value: *mut ::std::os::raw::c_char);
+
+pub unsafe fn set_monitored_obj(value: *mut ::std::os::raw::c_char) {
+    dss_c::CapControls_Set_MonitoredObj(value);
 }
-extern "C" {
-    pub fn CapControls_Set_MonitoredTerm(Value: i32);
+
+pub unsafe fn set_monitored_term(value: i32) {
+    dss_c::CapControls_Set_MonitoredTerm(value);
 }
-extern "C" {
-    pub fn CapControls_Set_Name(Value: *mut ::std::os::raw::c_char);
+
+pub unsafe fn set_name(value: *mut ::std::os::raw::c_char) {
+    dss_c::CapControls_Set_Name(value);
 }
-extern "C" {
-    pub fn CapControls_Set_OFFSetting(Value: f64);
+
+pub unsafe fn set_off_setting(value: f64) {
+    dss_c::CapControls_Set_OFFSetting(value);
 }
-extern "C" {
-    pub fn CapControls_Set_ONSetting(Value: f64);
+
+pub unsafe fn set_on_setting(value: f64) {
+    dss_c::CapControls_Set_ONSetting(value);
 }
-extern "C" {
-    pub fn CapControls_Set_PTratio(Value: f64);
+
+pub unsafe fn set_pt_ratio(value: f64) {
+    dss_c::CapControls_Set_PTratio(value);
 }
-extern "C" {
-    pub fn CapControls_Set_UseVoltOverride(Value: u16);
+
+pub unsafe fn set_use_volt_override(value: u16) {
+    dss_c::CapControls_Set_UseVoltOverride(value);
 }
-extern "C" {
-    pub fn CapControls_Set_Vmax(Value: f64);
+
+pub unsafe fn set_vmax(value: f64) {
+    dss_c::CapControls_Set_Vmax(value);
 }
-extern "C" {
-    pub fn CapControls_Set_Vmin(Value: f64);
+
+pub unsafe fn set_vmin(value: f64) {
+    dss_c::CapControls_Set_Vmin(value);
 }
-extern "C" {
-    pub fn CapControls_Get_Count() -> i32;
+
+pub unsafe fn get_count() -> i32 {
+    dss_c::CapControls_Get_Count()
 }
-extern "C" {
-    pub fn CapControls_Reset();
+
+pub unsafe fn reset() {
+    dss_c::CapControls_Reset();
 }
