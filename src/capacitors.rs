@@ -1,72 +1,97 @@
-extern "C" {
-    pub fn Capacitors_Get_AllNames(
-        ResultPtr: *mut *mut *mut ::std::os::raw::c_char,
-        ResultCount: *mut i32,
-    );
+#[cfg(feature = "linux_x64")]
+use crate::linux_x64::bindings as dss_c;
+
+pub unsafe fn get_all_names(
+    result_ptr: *mut *mut *mut ::std::os::raw::c_char,
+    result_count: *mut i32,
+) {
+    dss_c::Capacitors_Get_AllNames(result_ptr, result_count);
 }
-extern "C" {
-    pub fn Capacitors_Get_AllNames_GR();
+
+pub unsafe fn get_all_names_gr() {
+    dss_c::Capacitors_Get_AllNames_GR();
 }
-extern "C" {
-    pub fn Capacitors_Get_First() -> i32;
+
+pub unsafe fn get_first() -> i32 {
+    dss_c::Capacitors_Get_First()
 }
-extern "C" {
-    pub fn Capacitors_Get_IsDelta() -> u16;
+
+pub unsafe fn get_is_delta() -> u16 {
+    dss_c::Capacitors_Get_IsDelta()
 }
-extern "C" {
-    pub fn Capacitors_Get_kV() -> f64;
+
+pub unsafe fn get_kv() -> f64 {
+    dss_c::Capacitors_Get_kV()
 }
-extern "C" {
-    pub fn Capacitors_Get_kvar() -> f64;
+
+pub unsafe fn get_kvar() -> f64 {
+    dss_c::Capacitors_Get_kvar()
 }
-extern "C" {
-    pub fn Capacitors_Get_Name() -> *mut ::std::os::raw::c_char;
+
+pub unsafe fn get_name() -> *mut ::std::os::raw::c_char {
+    dss_c::Capacitors_Get_Name()
 }
-extern "C" {
-    pub fn Capacitors_Get_Next() -> i32;
+
+pub unsafe fn get_next() -> i32 {
+    dss_c::Capacitors_Get_Next()
 }
-extern "C" {
-    pub fn Capacitors_Get_NumSteps() -> i32;
+
+pub unsafe fn get_num_steps() -> i32 {
+    dss_c::Capacitors_Get_NumSteps()
 }
-extern "C" {
-    pub fn Capacitors_Set_IsDelta(Value: u16);
+
+pub unsafe fn set_is_delta(value: u16) {
+    dss_c::Capacitors_Set_IsDelta(value);
 }
-extern "C" {
-    pub fn Capacitors_Set_kV(Value: f64);
+
+pub unsafe fn set_kv(value: f64) {
+    dss_c::Capacitors_Set_kV(value);
 }
-extern "C" {
-    pub fn Capacitors_Set_kvar(Value: f64);
+
+pub unsafe fn set_kvar(value: f64) {
+    dss_c::Capacitors_Set_kvar(value);
 }
-extern "C" {
-    pub fn Capacitors_Set_Name(Value: *mut ::std::os::raw::c_char);
+
+pub unsafe fn set_name(value: *mut ::std::os::raw::c_char) {
+    dss_c::Capacitors_Set_Name(value);
 }
-extern "C" {
-    pub fn Capacitors_Set_NumSteps(Value: i32);
+
+pub unsafe fn set_num_steps(value: i32) {
+    dss_c::Capacitors_Set_NumSteps(value);
 }
-extern "C" {
-    pub fn Capacitors_Get_Count() -> i32;
+
+pub unsafe fn get_count() -> i32 {
+    dss_c::Capacitors_Get_Count()
 }
-extern "C" {
-    pub fn Capacitors_AddStep() -> u16;
+
+pub unsafe fn add_step() -> u16 {
+    dss_c::Capacitors_AddStep()
 }
-extern "C" {
-    pub fn Capacitors_SubtractStep() -> u16;
+
+pub unsafe fn subtract_step() -> u16 {
+    dss_c::Capacitors_SubtractStep()
 }
-extern "C" {
-    pub fn Capacitors_Get_AvailableSteps() -> i32;
+
+pub unsafe fn get_available_steps() -> i32 {
+    dss_c::Capacitors_Get_AvailableSteps()
 }
-extern "C" {
-    pub fn Capacitors_Get_States(ResultPtr: *mut *mut i32, ResultCount: *mut i32);
+
+pub unsafe fn get_states(result_ptr: *mut *mut i32, result_count: *mut i32) {
+    dss_c::Capacitors_Get_States(result_ptr, result_count);
 }
-extern "C" {
-    pub fn Capacitors_Get_States_GR();
+
+pub unsafe fn get_states_GR() {
+    dss_c::Capacitors_Get_States_GR();
 }
-extern "C" {
-    pub fn Capacitors_Set_States(ValuePtr: *mut i32, ValueCount: i32);
+
+pub unsafe fn set_states(value_ptr: *mut i32, value_count: i32) {
+    dss_c::Capacitors_Set_States(value_ptr, value_count);
 }
-extern "C" {
-    pub fn Capacitors_Open();
+
+pub unsafe fn open() {
+    dss_c::Capacitors_Open();
 }
-extern "C" {
-    pub fn Capacitors_Close();
+
+pub unsafe fn close() {
+    dss_c::Capacitors_Close();
 }
