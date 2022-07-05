@@ -15,31 +15,31 @@ pub mod active_class;
 /// OpenDSS `Bus*` functions.
 pub mod bus;
 /// OpenDSS `CapControls*` functions.
-#[cfg(feature = "cap_controls")]
+#[cfg(feature = "unsafe")]
 pub mod cap_controls;
 /// OpenDSS `Capacitors*` functions.
-#[cfg(feature = "capacitors")]
+#[cfg(feature = "unsafe")]
 pub mod capacitors;
 /// OpenDSS `Ciruit*` functions.
-#[cfg(feature = "circuit")]
+#[cfg(feature = "unsafe")]
 pub mod circuit;
 /// OpenDSS `CktElement*` functions.
-#[cfg(feature = "ckt_element")]
+#[cfg(feature = "unsafe")]
 pub mod ckt_element;
 /// OpenDSS `DSS*` functions.
-#[cfg(feature = "dss")]
+#[cfg(feature = "unsafe")]
 pub mod dss;
 /// OpenDSS `DSS_Executive*` functions.
-#[cfg(feature = "dss_executive")]
+#[cfg(feature = "unsafe")]
 pub mod dss_executive;
-/// OpenDSS error handling.
+/// Error handling.
 pub mod dss_result;
 /// OpenDSS `Loads*` functions.
-#[cfg(feature = "loads")]
+#[cfg(feature = "unsafe")]
 pub mod loads;
 /// OpenDSS `RegControls*` functions.
-#[cfg(feature = "reg_controls")]
+#[cfg(feature = "unsafe")]
 pub mod reg_controls;
 /// OpenDSS `Transformers*` functions.
-#[cfg(feature = "transformers")]
+#[cfg(feature = "unsafe")]
 pub mod transformers;
