@@ -24,10 +24,9 @@ pub mod capacitors;
 #[cfg(feature = "unsafe")]
 pub mod circuit;
 /// OpenDSS `CktElement*` functions.
-#[cfg(feature = "unsafe")]
+#[cfg(feature = "unimplemented")]
 pub mod ckt_element;
 /// OpenDSS `DSS*` functions.
-#[cfg(feature = "unsafe")]
 pub mod dss;
 /// OpenDSS `DSS_Executive*` functions.
 #[cfg(feature = "unsafe")]
@@ -35,11 +34,11 @@ pub mod dss_executive;
 /// Error handling.
 pub mod dss_result;
 /// OpenDSS `Loads*` functions.
-#[cfg(feature = "unsafe")]
+#[cfg(feature = "unimplemented")]
 pub mod loads;
 /// OpenDSS `RegControls*` functions.
-#[cfg(feature = "unsafe")]
+#[cfg(feature = "unimplemented")]
 pub mod reg_controls;
 /// OpenDSS `Transformers*` functions.
-#[cfg(feature = "unsafe")]
+#[cfg(feature = "unimplemented")]
 pub mod transformers;
