@@ -80,7 +80,7 @@ pub unsafe fn get_states(result_ptr: *mut *mut i32, result_count: *mut i32) {
     dss_c::Capacitors_Get_States(result_ptr, result_count);
 }
 
-pub unsafe fn get_states_GR() {
+pub unsafe fn get_states_gr() {
     dss_c::Capacitors_Get_States_GR();
 }
 
