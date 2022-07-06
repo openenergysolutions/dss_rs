@@ -6,7 +6,7 @@ pub unsafe fn get_command(i: i32) -> *mut ::std::os::raw::c_char {
 }
 
 pub unsafe fn get_num_commands() -> i32 {
-    dss_c:::DSS_Executive_Get_NumCommands()
+    dss_c::DSS_Executive_Get_NumCommands()
 }
 
 pub unsafe fn get_num_options() -> i32 {
