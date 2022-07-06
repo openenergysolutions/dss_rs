@@ -123,7 +123,7 @@ pub fn zscrefresh() -> u16 {
 }
 
 #[cfg(feature = "unsafe")]
-pub fn get_ysc_matrix(result_ptr: *mut *mut f64, result_count: *mut i32) {
+pub unsafe fn get_ysc_matrix(result_ptr: *mut *mut f64, result_count: *mut i32) {
     dss_c::Bus_Get_YscMatrix(result_ptr, result_count);
 }
 
