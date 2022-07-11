@@ -1,6 +1,5 @@
 use crate::dss_result::Result;
-#[cfg(feature = "linux_x64")]
-use crate::linux_x64::bindings as dss_c;
+use dss_rs_sys as dss_c;
 use std::{ffi::CStr, os::raw::c_char};
 
 pub fn get_name() -> Result<String> {

@@ -9,8 +9,9 @@ keywords = ["OpenDSS", "circuit", "simulator"]
 repository = "github.com/OES/dss_rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+dss_rs_sys = { path = "dss_rs_sys" }
+
 [features]
-default = ["linux_x64"]
-linux_x64 = []
 unsafe = []
 unimplemented = []

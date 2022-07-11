@@ -2,14 +2,6 @@
 ///
 /// [DSS_EXTENSIONS]:https://dss-extensions.org/
 
-// Disables relevant warnings for all bindings.
-#[allow(non_upper_case_globals)]
-#[allow(non_camel_case_types)]
-#[allow(non_snake_case)]
-/// OpenDSS `linux_x64` target.
-#[cfg(feature = "linux_x64")]
-pub mod linux_x64;
-
 /// OpenDSS `ActiveClass*` functions.
 pub mod active_class;
 /// OpenDSS `Bus*` functions.

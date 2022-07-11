@@ -2,26 +2,29 @@
 
 Early-stage crate providing access to the OpenDSS C API from [DSS_Extensions][DSS_EXTENSIONS].
 
+This crate _must_ be used as a local dependency specified via path. E.g. in `Cargo.toml`
+
+```
+[dependencies]
+dss_rs = { path = "dss_rs" }
+```
 
 ## Summary
 
 This crate provides a non-`unsafe` (re: safe) Rust API on top of `unsafe` bindings to the OpenDSS C API by DSS_Extensions.
-
-We rely on pre-built binaries, which are included in the `lib` folder. The only target currently supported is `linux_x64`.
 
 This project is unaffiliated with the DSS_Extensions organization.
 
 
 ## Building
 
-As easy as `cargo build`
+Using this project will require you to build `dss_rs_sys`. Instructions on how can be found in the project folder.
 
-## Sanity Test
+## Running
 
-You will want to perform a sanity test to make sure that the `dss_capi` libs can actually be called.
-This requires setting the `$LD_LIBRARY_PATH` environment variable:
+Using this crate requires setting `LD_LIBRARY_PATH`. E.g.
 ```
-LD_LIBRARY_PATH=$PWD/lib/linux_x64:$LD_LIBRARY_PATH cargo test
+LD_LIBRARY_PATH=dss_rs_sys/dss_capi/lib/linux_x64 cargo test
 ```
 
 [DSS_EXTENSIONS]:https://github.com/dss-extensions/dss_capi

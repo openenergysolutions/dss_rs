@@ -1,9 +1,17 @@
-use dss_rs::linux_x64::bindings as dss_c;
+extern crate dss_rs_sys;
+use dss_rs;
 
 // Verify C API bindings can be called.
 #[test]
-fn test_dss_start() {
+fn unsafe_dss_start() {
     unsafe {
-        dss_c::DSS_Start(0);
+        let ret = dss_rs_sys::DSS_Start(0);
+        assert!(ret != 0);
     }
+}
+
+#[test]
+fn dss_start() {
+    let ret = dss_rs::dss::start(0);
+    assert!(ret != 0);
 }

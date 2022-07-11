@@ -1,5 +1,4 @@
-#[cfg(feature = "linux_x64")]
-use crate::linux_x64::bindings as dss_c;
+use dss_rs_sys as dss_c;
 
 pub unsafe fn get_all_names(
     result_ptr: *mut *mut *mut ::std::os::raw::c_char,

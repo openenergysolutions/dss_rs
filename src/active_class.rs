@@ -1,6 +1,6 @@
+extern crate dss_rs_sys;
 use crate::dss_result::{DssError, Result};
-#[cfg(feature = "linux_x64")]
-use crate::linux_x64::bindings as dss_c;
+use dss_rs_sys as dss_c;
 use std::{
     ffi::{CStr, CString},
     os::raw::c_char,
