@@ -1,4 +1,10 @@
+extern crate dss_rs_sys;
+use crate::dss_result::Result;
 use dss_rs_sys as dss_c;
+use std::{
+    convert::TryInto,
+    ffi::CString,
+};
 
 pub unsafe fn get_all_names(
     result_ptr: *mut *mut *mut ::std::os::raw::c_char,
@@ -51,8 +57,12 @@ pub unsafe fn set_kvar(value: f64) {
     dss_c::Capacitors_Set_kvar(value);
 }
 
-pub unsafe fn set_name(value: *mut ::std::os::raw::c_char) {
-    dss_c::Capacitors_Set_Name(value);
+pub fn set_name(value: &str) -> Result<()> {
+    unsafe {
+        let c_str = CString::new(value)?;
+        dss_c::Capacitors_Set_Name(c_str.into_raw());
+    }
+    Ok(())
 }
 
 pub unsafe fn set_num_steps(value: i32) {
@@ -83,8 +93,12 @@ pub unsafe fn get_states_gr() {
     dss_c::Capacitors_Get_States_GR();
 }
 
-pub unsafe fn set_states(value_ptr: *mut i32, value_count: i32) {
-    dss_c::Capacitors_Set_States(value_ptr, value_count);
+pub fn set_states(states: Vec<i32>) -> Result<()> {
+    unsafe {
+        let (value_ptr, value_count, _) = states.into_raw_parts();
+        dss_c::Capacitors_Set_States(value_ptr, value_count.try_into()?);
+    }
+    Ok(())
 }
 
 pub unsafe fn open() {

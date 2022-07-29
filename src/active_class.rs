@@ -12,7 +12,7 @@ pub fn get_all_names() -> Result<Vec<Vec<String>>> {
         let mut result_ptr: *mut *mut *mut c_char = ptr::null_mut();
         let result_cnt: *mut i32 = ptr::null_mut();
         dss_c::ActiveClass_Get_AllNames(result_ptr, result_cnt);
-        if result_ptr == ptr::null_mut() {
+        if result_ptr == ptr::null_mut() || result_cnt == ptr::null_mut() {
             return Err(DssError::NullCPtr);
         }
         let mut all_names: Vec<Vec<String>> = Vec::new();

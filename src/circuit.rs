@@ -1,4 +1,12 @@
+extern crate dss_rs_sys;
+use crate::dss_result::{DssError, Result};
 use dss_rs_sys as dss_c;
+use std::{
+    ffi::CString,
+    ptr,
+    slice,
+};
+
 
 pub unsafe fn get_name() -> *mut ::std::os::raw::c_char {
     dss_c::Circuit_Get_Name()
@@ -24,16 +32,34 @@ pub unsafe fn get_line_losses_gr() {
     dss_c::Circuit_Get_LineLosses_GR();
 }
 
-pub unsafe fn get_losses(result_ptr: *mut *mut f64, result_count: *mut i32) {
-    dss_c::Circuit_Get_Losses(result_ptr, result_count);
+pub fn get_losses() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Circuit_Get_Losses(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr)
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
 }
 
 pub unsafe fn get_losses_gr() {
     dss_c::Circuit_Get_Losses_GR();
 }
 
-pub unsafe fn get_all_bus_bmag(result_ptr: *mut *mut f64, result_count: *mut i32) {
-    dss_c::Circuit_Get_AllBusVmag(result_ptr, result_count);
+pub fn get_all_bus_vmag() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Circuit_Get_AllBusVmag(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr)
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
 }
 
 pub unsafe fn get_all_bus_vmag_gr() {
@@ -125,16 +151,30 @@ pub unsafe fn save_sample() {
     dss_c::Circuit_SaveSample();
 }
 
-pub unsafe fn set_active_element(full_name: *mut ::std::os::raw::c_char) -> i32 {
-    dss_c::Circuit_SetActiveElement(full_name)
+pub fn set_active_element(full_name: &str) -> Result<i32> {
+    unsafe {
+        let c_str = CString::new(full_name)?;
+        let ret = dss_c::Circuit_SetActiveElement(c_str.into_raw());
+        if ret < 0 { return Err(DssError::CallFail) }
+        Ok(ret)
+    }
 }
 
 pub unsafe fn capacity(start: f64, increment: f64) -> f64 {
     dss_c::Circuit_Capacity(start, increment)
 }
 
-pub unsafe fn get_all_bus_vmag_pu(result_ptr: *mut *mut f64, result_count: *mut i32) {
-    dss_c::Circuit_Get_AllBusVmagPu(result_ptr, result_count);
+pub fn get_all_bus_vmag_pu() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Circuit_Get_AllBusVmagPu(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr)
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
 }
 
 pub unsafe fn get_all_bus_vmag_pu_gr() {
