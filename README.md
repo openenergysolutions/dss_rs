@@ -18,13 +18,25 @@ This project is unaffiliated with the DSS_Extensions organization.
 
 ## Building
 
-Using this project will require you to build `dss_rs_sys`. Instructions on how can be found in the project folder.
+`cargo build` will only partially build this project for you. You must manually build `dss_capi` (a  dependency of `dss_rs_sys`). Instructions on how to do so are located in `dss_rs_sys`.
+
+## Sanity Test
+
+Once you have manually built `dss_capi`, make sure you can actually call it.
+
+```
+cargo test
+```
 
 ## Running
 
-Using this crate requires setting `LD_LIBRARY_PATH`. E.g.
+Using this crate requires setting `LD_LIBRARY_PATH`. This can be done via CLI:
 ```
-LD_LIBRARY_PATH=dss_rs_sys/dss_capi/lib/linux_x64 cargo test
+LD_LIBRARY_PATH=$DSS_CAPI_PATH cargo run
+```
+Or via build script
+```
+println!("cargo:rustc-env=LD_LIBRARY_PATH=$DSS_CAPI_PATH");
 ```
 
 [DSS_EXTENSIONS]:https://github.com/dss-extensions/dss_capi
