@@ -16,4 +16,3 @@ libc = "0.2.126"
 [features]
 default = ["unsafe"]
 unsafe = []
-unimplemented = []
