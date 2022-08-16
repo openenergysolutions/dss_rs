@@ -16,3 +16,9 @@ libc = "0.2.126"
 [features]
 default = ["unsafe"]
 unsafe = []
+
+[profile.dev]
+rpath = true
+
+[profile.release]
+rpath = true
