@@ -31,3 +31,6 @@ cargo test
 ## Usage
 
 `dss_capi` and `klusolve` (dependencies of `dss_rs_sys`) must either be visible to the linker at runtime or set as an `rpath` at compile time. `build.rs` serves as an example for specifying the `rpath`.
+
+
+[DSS_EXTENSIONS]:https://github.com/dss-extensions/dss_capi
