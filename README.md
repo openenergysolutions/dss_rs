@@ -11,7 +11,7 @@ dss_rs = { path = "dss_rs" }
 
 ## Summary
 
-This crate provides a non-`unsafe` (re: safe) Rust API on top of `unsafe` bindings to the OpenDSS C API by DSS_Extensions.
+This crate provides a Rusty API on top of `unsafe` bindings to the OpenDSS C API by DSS_Extensions.
 
 This project is unaffiliated with the DSS_Extensions organization.
 
@@ -20,7 +20,7 @@ This project is unaffiliated with the DSS_Extensions organization.
 
 `cargo build` will only partially build this project for you. You must manually build `dss_capi` (a  dependency of `dss_rs_sys`). Instructions on how to do so are located in `dss_rs_sys`.
 
-## Sanity Test
+#### Sanity Test
 
 Once you have manually built `dss_capi`, make sure you can actually call it.
 
@@ -28,17 +28,6 @@ Once you have manually built `dss_capi`, make sure you can actually call it.
 cargo test
 ```
 
-## Running
+## Usage
 
-Using this crate requires setting `LD_LIBRARY_PATH`. This can be done via CLI:
-```
-LD_LIBRARY_PATH=$DSS_CAPI_PATH cargo run
-```
-Or via build script
-```
-println!("cargo:rustc-env=LD_LIBRARY_PATH=$DSS_CAPI_PATH");
-```
-
-[DSS_EXTENSIONS]:https://github.com/dss-extensions/dss_capi
-
-
+`dss_capi` and `klusolve` (dependencies of `dss_rs_sys`) must either be visible to the linker at runtime or set as an `rpath` at compile time. `build.rs` serves as an example for specifying the `rpath`.
