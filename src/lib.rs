@@ -32,3 +32,5 @@ pub mod reg_controls;
 /// OpenDSS `Transformers*` functions.
 #[cfg(feature = "unimplemented")]
 pub mod transformers;
+/// OpenDSS `Vsource*` functions.
+pub mod vsources;
