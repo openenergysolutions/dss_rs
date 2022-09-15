@@ -1,9 +1,7 @@
 extern crate dss_rs_sys;
 use crate::dss_result::Result;
 use dss_rs_sys as dss_c;
-use std::{
-    ffi::CString,
-};
+use std::ffi::CString;
 
 pub fn set_name(value: &str) -> Result<()> {
     unsafe {
@@ -14,9 +12,13 @@ pub fn set_name(value: &str) -> Result<()> {
 }
 
 pub fn set_tap_number(value: i32) {
-    unsafe { dss_c::RegControls_Set_TapNumber(value); }
+    unsafe {
+        dss_c::RegControls_Set_TapNumber(value);
+    }
 }
 
 pub fn set_max_tap_change(value: i32) {
-    unsafe { dss_c::RegControls_Set_MaxTapChange(value); }
+    unsafe {
+        dss_c::RegControls_Set_MaxTapChange(value);
+    }
 }

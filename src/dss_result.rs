@@ -1,4 +1,4 @@
-use std::{ffi::NulError, str::Utf8Error, num::TryFromIntError};
+use std::{ffi::NulError, num::TryFromIntError, str::Utf8Error};
 pub type Result<T> = std::result::Result<T, DssError>;
 
 #[derive(Debug)]

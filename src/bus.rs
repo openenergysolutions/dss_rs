@@ -1,6 +1,6 @@
-use crate::dss_result::Result;
+use crate::dss_result::{DssError, Result};
 use dss_rs_sys as dss_c;
-use std::{ffi::CStr, os::raw::c_char};
+use std::{ffi::CStr, os::raw::c_char, ptr, slice};
 
 pub fn get_name() -> Result<String> {
     unsafe {
@@ -221,9 +221,17 @@ pub fn get_vll_gr() {
     }
 }
 
-#[cfg(feature = "unsafe")]
-pub unsafe fn get_pu_vmag_angle(result_ptr: *mut *mut f64, result_count: *mut i32) {
-    dss_c::Bus_Get_puVmagAngle(result_ptr, result_count);
+pub fn get_pu_vmag_angle() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_count = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Bus_Get_puVmagAngle(&mut result_ptr, &mut result_count);
+        if result_count == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_count as usize).to_vec();
+        Ok(v)
+    }
 }
 
 pub fn get_pu_vmag_angle_gr() {

@@ -25,15 +25,19 @@ pub fn solution_set_mode(mode: i32) {
 }
 
 pub fn solution_solve() {
-    unsafe { dss_c::Solution_Solve(); }
+    unsafe {
+        dss_c::Solution_Solve();
+    }
 }
 
 pub fn solution_init_snap() {
-    unsafe { dss_c::Solution_InitSnap(); }
+    unsafe {
+        dss_c::Solution_InitSnap();
+    }
 }
 
 pub fn check_error_msg() -> Option<String> {
-    unsafe{
+    unsafe {
         let ctx = dss_c::ctx_Get_Prime();
         if dss_c::ctx_Error_Get_Number(ctx) == 0 {
             return None;

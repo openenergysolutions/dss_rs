@@ -1,10 +1,7 @@
 extern crate dss_rs_sys;
 use crate::dss_result::Result;
 use dss_rs_sys as dss_c;
-use std::{
-    convert::TryInto,
-    ffi::CString,
-};
+use std::{convert::TryInto, ffi::CString};
 
 pub unsafe fn get_all_names(
     result_ptr: *mut *mut *mut ::std::os::raw::c_char,
