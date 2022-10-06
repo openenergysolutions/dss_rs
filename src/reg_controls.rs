@@ -22,3 +22,9 @@ pub fn set_max_tap_change(value: i32) {
         dss_c::RegControls_Set_MaxTapChange(value);
     }
 }
+
+pub fn set_forward_vreg(value: f64) {
+    unsafe {
+        dss_c::RegControls_Set_ForwardVreg(value);
+    }
+}
