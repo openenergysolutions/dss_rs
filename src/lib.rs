@@ -25,12 +25,11 @@ pub mod dss;
 pub mod dss_executive;
 /// Error handling.
 pub mod dss_result;
+/// OpenDSS `Generators*` functions.
+pub mod generators;
 /// OpenDSS `Loads*` functions.
 pub mod loads;
 /// OpenDSS `RegControls*` functions.
 pub mod reg_controls;
-/// OpenDSS `Transformers*` functions.
-#[cfg(feature = "unimplemented")]
-pub mod transformers;
 /// OpenDSS `Vsource*` functions.
 pub mod vsources;
