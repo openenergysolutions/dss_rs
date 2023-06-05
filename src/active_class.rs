@@ -8,6 +8,8 @@ use std::{
 };
 
 pub fn get_all_names() -> Result<Vec<Vec<String>>> {
+    // TODO: use from_raw_parts feature here.
+    // Looping was stupid and was done prematurely :)
     unsafe {
         let mut result_ptr: *mut *mut *mut c_char = ptr::null_mut();
         let result_cnt: *mut i32 = ptr::null_mut();

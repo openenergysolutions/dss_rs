@@ -4,6 +4,15 @@ Early-stage crate providing access to the OpenDSS C API from [DSS_Extensions][DS
 
 This crate _must_ be used as a local dependency specified via path. E.g. in `Cargo.toml`
 
+Your project must also have a build script that links the dss_capi lib:
+```rust
+// build.rs
+fn main() {
+    println!("cargo:rustc-link-arg=-Wl,-rpath=/usr/local/lib");
+    println!("cargo:rustc-link-lib=dss_capi");
+}
+```
+
 ```
 [dependencies]
 dss_rs = { path = "dss_rs" }
