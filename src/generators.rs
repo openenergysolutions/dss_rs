@@ -16,3 +16,15 @@ pub fn set_kvar(value: f64) {
         dss_c::Generators_Set_kvar(value);
     }
 }
+
+pub fn set_kw(value: f64) {
+    unsafe {
+        dss_c::Generators_Set_kW(value);
+    }
+}
+
+pub fn set_pf(value: f64) {
+    unsafe {
+        dss_c::Generators_Set_PF(value);
+    }
+}

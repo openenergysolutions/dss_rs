@@ -11,3 +11,9 @@ pub fn set_kvar(value: f64) {
         dss_c::Loads_Set_kvar(value);
     }
 }
+
+pub fn set_pf(value: f64) {
+    unsafe {
+        dss_c::Loads_Set_PF(value);
+    }
+}
