@@ -19,7 +19,7 @@ jobs:
       - name: Get FPC
         run: "curl -L \
               https://sourceforge.net/projects/freepascal/files/Linux/3.2.2/fpc-3.2.2.x86_64-linux.tar \
-              > fpc-3.2.2.x86_64-linux.tar
+              > fpc-3.2.2.x86_64-linux.tar && \
             tar -xf fpc-3.2.2.x86_64-linux.tar && \
             rm -rf fpc-3.2.2.x86_64-linux.tar && \
             cd fpc-3.2.2.x86_64-linux && \
