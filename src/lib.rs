@@ -29,10 +29,10 @@ pub mod dss_result;
 pub mod generators;
 /// OpenDSS `Loads*` functions.
 pub mod loads;
-/// OpenDSS `RegControls*` functions.
-pub mod reg_controls;
 /// OpenDSS `Reclosers*` functions.
 pub mod reclosers;
+/// OpenDSS `RegControls*` functions.
+pub mod reg_controls;
 /// OpenDSS `SwtControls*` functions.
 pub mod swt_controls;
 /// OpenDSS `Vsource*` functions.
