@@ -4,7 +4,7 @@ on:
     branches: [master]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout dss_rs
@@ -17,17 +17,7 @@ jobs:
           toolchain: nightly
 
       - name: Get FPC
-        run: "curl -L \
-              https://sourceforge.net/projects/freepascal/files/Linux/3.2.2/fpc-3.2.2.x86_64-linux.tar \
-              > fpc-3.2.2.x86_64-linux.tar && \
-            tar -xf fpc-3.2.2.x86_64-linux.tar && \
-            rm -rf fpc-3.2.2.x86_64-linux.tar && \
-            cd fpc-3.2.2.x86_64-linux && \
-            echo | ./install.sh && \
-            tree && \
-            cd ../ && \
-            rm -rf fpc-3.2.2.x86_64-linux && \
-            fpc -iV"
+        run: "apt install fpc && fpc -iV"
 
       - name: Build dss_capi
         run: "cd dss_rs_sys && \
