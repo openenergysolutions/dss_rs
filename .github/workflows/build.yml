@@ -19,6 +19,9 @@ jobs:
       - name: Get FPC
         run: "sudo apt install fpc && fpc -iV"
 
+      - name: Build dss_rs
+        run: cargo build --release
+
       - name: Build dss_capi
         run: "cd dss_rs_sys && \
               mkdir -p klusolvex && \
@@ -26,9 +29,6 @@ jobs:
               cd dss_capi && \
               build/build_linux_x64.sh && \
               cp lib/linux_x64/*.so /usr/local/lib/"
-
-      - name: Build dss_rs
-        run: cargo build --release
 
       - name: Test dss_rs
         run: cargo test -- --nocapture --test-threads 1
