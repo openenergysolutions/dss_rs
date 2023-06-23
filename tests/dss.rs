@@ -1,4 +1,4 @@
-use dss_rs::{capacitors, circuit, ckt_element, dss, reg_controls};
+use dss_rs::{capacitors, circuit, ckt_element, dss, reg_controls, swt_controls};
 
 #[test]
 fn shared_lib_call() {
@@ -57,3 +57,45 @@ fn closeopen_capbank() {
     assert!(currents.is_ok());
 }
 
+#[test]
+fn closeopen_switch() {
+    // Breakers are treated like switches in OpenDSS;
+    // thus opening/closing a breaker is the same as below.
+    assert!(dss::start(0) != 0);
+    assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
+    assert!(circuit::set_active_element("SwtControl.671692").is_ok());
+
+    // Close Switch
+    swt_controls::close();
+
+    let voltages = ckt_element::get_voltages_mag_ang();
+    let currents = ckt_element::get_powers();
+    assert!(voltages.is_ok());
+    assert!(currents.is_ok());
+
+    // Open Switch
+    swt_controls::open();
+
+    let voltages = ckt_element::get_voltages_mag_ang();
+    let currents = ckt_element::get_powers();
+    assert!(voltages.is_ok());
+    assert!(currents.is_ok());
+}
+
+#[ignore]
+#[test]
+fn closeopen_recloser() {
+    todo!()
+}
+
+#[ignore]
+#[test]
+fn set_generator() {
+    todo!()
+}
+
+#[ignore]
+#[test]
+fn set_load() {
+    todo!()
+}
