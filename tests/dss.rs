@@ -7,10 +7,11 @@ fn shared_lib_call() {
 }
 
 #[test]
-fn tap_regulator_and_get_reading() {
+fn tap_regulator() {
     assert!(dss::start(0) != 0);
     assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
     assert!(circuit::set_active_element("regcontrol.Reg1").is_ok());
+
     let cur_tap = reg_controls::get_tap_number();
 
     // Raise Tap
@@ -34,7 +35,7 @@ fn tap_regulator_and_get_reading() {
 }
 
 #[test]
-fn set_capbank_and_get_reading() {
+fn closeopen_capbank() {
     assert!(dss::start(0) != 0);
     assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
     assert!(circuit::set_active_element("Capacitor.cap1").is_ok());
@@ -55,3 +56,4 @@ fn set_capbank_and_get_reading() {
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
 }
+
