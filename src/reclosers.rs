@@ -9,6 +9,6 @@ pub fn open() {
 
 pub fn close() {
     unsafe {
-        dss_c::Reclosers_Open();
+        dss_c::Reclosers_Close();
     }
 }
