@@ -20,7 +20,7 @@ jobs:
         run: "sudo apt install fpc && fpc -iV"
 
       - name: Build dss_rs
-        run: cargo build --release
+        run: rustup default nightly && cargo build --release
 
       - name: Build dss_capi
         run: "cd dss_rs_sys && \
@@ -31,4 +31,4 @@ jobs:
               cp lib/linux_x64/*.so /usr/local/lib/"
 
       - name: Test dss_rs
-        run: cargo test -- --nocapture --test-threads 1
+        run: cargo test -- --test-threads 1
