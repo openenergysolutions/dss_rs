@@ -17,6 +17,10 @@ pub fn set_tap_number(value: i32) {
     }
 }
 
+pub fn get_tap_number() -> i32 {
+    unsafe { dss_c::RegControls_Get_TapNumber() }
+}
+
 pub fn set_max_tap_change(value: i32) {
     unsafe {
         dss_c::RegControls_Set_MaxTapChange(value);
