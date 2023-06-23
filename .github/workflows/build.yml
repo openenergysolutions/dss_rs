@@ -24,6 +24,7 @@ jobs:
             rm -rf fpc-3.2.2.x86_64-linux.tar && \
             cd fpc-3.2.2.x86_64-linux && \
             echo | ./install.sh && \
+            tree && \
             cd ../ && \
             rm -rf fpc-3.2.2.x86_64-linux && \
             fpc -iV"
