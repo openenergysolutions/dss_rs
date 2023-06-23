@@ -7,6 +7,7 @@ pub enum DssError {
     NullCPtr,
     CallFail,
     TryFromInt,
+    TryFromUint,
 }
 
 impl From<Utf8Error> for DssError {

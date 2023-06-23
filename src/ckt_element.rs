@@ -15,3 +15,16 @@ pub fn get_powers() -> Result<Vec<f64>> {
         Ok(v)
     }
 }
+
+pub fn get_voltages_mag_ang() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::CktElement_Get_VoltagesMagAng(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
+}

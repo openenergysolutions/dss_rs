@@ -1,0 +1,42 @@
+name: Verify Build
+on:
+  push:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout dss_rs
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+
+      - name: Get FPC
+        run: "curl -L \
+              https://sourceforge.net/projects/freepascal/files/Linux/3.2.2/fpc-3.2.2.x86_64-linux.tar \
+              > fpc-3.2.2.x86_64-linux.tar && \
+            tar -xf fpc-3.2.2.x86_64-linux.tar && \
+            rm -rf fpc-3.2.2.x86_64-linux.tar && \
+            cd fpc-3.2.2.x86_64-linux && \
+            echo | ./install.sh && \
+            cd ../ && \
+            rm -rf fpc-3.2.2.x86_64-linux"
+
+      - name: Build dss_capi
+        run: "cd dss_rs_sys && \
+              mkdir -p klusolvex && \
+              cp klusolve/LICENSE klusolvex/LICENSE && \
+              cd dss_capi && \
+              build/build_linux_x64.sh && \
+              cp lib/linux_x64/*.so /usr/local/lib/"
+
+      - name: Build dss_rs
+        run: cargo build --release
+
+      - name: Test dss_rs
+        run: cargo test -- --nocapture --test-threads 1
