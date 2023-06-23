@@ -25,7 +25,8 @@ jobs:
             cd fpc-3.2.2.x86_64-linux && \
             echo | ./install.sh && \
             cd ../ && \
-            rm -rf fpc-3.2.2.x86_64-linux"
+            rm -rf fpc-3.2.2.x86_64-linux && \
+            fpc -iV"
 
       - name: Build dss_capi
         run: "cd dss_rs_sys && \
