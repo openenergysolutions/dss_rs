@@ -17,7 +17,7 @@ jobs:
           toolchain: nightly
 
       - name: Get FPC
-        run: "apt install fpc && fpc -iV"
+        run: "sudo apt install fpc && fpc -iV"
 
       - name: Build dss_capi
         run: "cd dss_rs_sys && \
