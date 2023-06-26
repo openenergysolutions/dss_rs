@@ -30,4 +30,6 @@ jobs:
               build/build_linux_x64.sh"
 
       - name: Test dss_rs
-        run: ls $PWD/dss_rs_sys/dss_capi/lib/linux_x64 && cargo test -- --test-threads 1
+        run: "ls $PWD/dss_rs_sys/dss_capi/lib/linux_x64 && \
+          sudo cp $PWD/dss_rs_sys/dss_capi/lib/linux_x64/*.so /usr/local/lib && \
+          cargo test -- --test-threads 1"
