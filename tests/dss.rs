@@ -17,6 +17,7 @@ fn tap_regulator() {
     // Raise Tap
     let cur_tap = cur_tap + 1;
     reg_controls::set_tap_number(cur_tap);
+    dss::solution_solve();
 
     assert!(circuit::set_active_element("Transformer.Reg1").is_ok());
 
@@ -27,6 +28,7 @@ fn tap_regulator() {
 
     // Lower Tap
     reg_controls::set_tap_number(cur_tap - 3);
+    dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
@@ -42,6 +44,7 @@ fn closeopen_capbank() {
 
     // Close CapBank
     assert!(capacitors::set_states(vec![1]).is_ok());
+    dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
@@ -50,6 +53,7 @@ fn closeopen_capbank() {
 
     // Open CapBank
     assert!(capacitors::set_states(vec![0]).is_ok());
+    dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
@@ -67,6 +71,7 @@ fn closeopen_switch() {
 
     // Close Switch
     swt_controls::close();
+    dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
@@ -75,6 +80,7 @@ fn closeopen_switch() {
 
     // Open Switch
     swt_controls::open();
+    dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
@@ -111,6 +117,7 @@ fn set_load() {
     loads::set_kw(5.0);
     loads::set_kvar(5.9);
     loads::set_pf(3.0);
+    dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
