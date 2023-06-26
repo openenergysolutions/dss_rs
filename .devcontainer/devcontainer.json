@@ -1,0 +1,8 @@
+{
+	"name": "rpcdss",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"runArgs": ["--network=host"],
+	"postCreateCommand": "bash .devcontainer/post-create.sh"
+}
