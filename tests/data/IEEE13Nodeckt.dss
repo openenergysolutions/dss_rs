@@ -159,6 +159,8 @@ New monitor.PV_power3 element=transformer.pv_up3 terminal=1 mode=1 ppolar=no
 !New Generator.DG1 phases=3 bus1=634 kV=0.277 kw=170 kvar=0
 !new monitor.DG_power generator.DG1 terminal=1 mode=1 ppolar=no
 
+New Storage.s680 Conn=Wye Phases=3 Bus1=680.3 kvar=0 kw=100
+
 !New Monitor.M1    Line.650632          mode=0 terminal=1 ppolar=no
 New Monitor.M1a  Transformer.Reg1   mode=0 terminal=1 ppolar=no
 New Monitor.M1b  Transformer.Reg2   mode=0 terminal=1 ppolar=no 

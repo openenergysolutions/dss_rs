@@ -108,8 +108,6 @@ fn set_generator() {
 
 #[test]
 fn set_load() {
-    // Breakers are treated like switches in OpenDSS;
-    // thus opening/closing a breaker is the same as below.
     assert!(dss::start(0) != 0);
     assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
     assert!(circuit::set_active_element("Load.671").is_ok());
@@ -129,4 +127,35 @@ fn set_load() {
     let currents = ckt_element::get_powers();
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
+}
+
+#[test]
+fn set_storage() {
+    assert!(dss::start(0) != 0);
+    assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
+    assert!(circuit::set_active_element("Storage.s680").is_ok());
+
+    let voltages = ckt_element::get_voltages_mag_ang();
+    let currents = ckt_element::get_powers();
+    assert!(voltages.is_ok());
+    assert!(currents.is_ok());
+
+    // Charge storage
+    dss_rs::storages::set_state(-1);
+    dss::solution_solve();
+
+    let voltages = ckt_element::get_voltages_mag_ang();
+    let currents = ckt_element::get_powers();
+    assert!(voltages.is_ok());
+    assert!(currents.is_ok());
+
+    // Discharge storage
+    dss_rs::storages::set_state(1);
+    dss::solution_solve();
+
+    let voltages = ckt_element::get_voltages_mag_ang();
+    let currents = ckt_element::get_powers();
+    assert!(voltages.is_ok());
+    assert!(currents.is_ok());
+
 }

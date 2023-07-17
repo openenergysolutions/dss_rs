@@ -33,6 +33,8 @@ pub mod loads;
 pub mod reclosers;
 /// OpenDSS `RegControls*` functions.
 pub mod reg_controls;
+/// OpenDSS `Storages*` functions.
+pub mod storages;
 /// OpenDSS `SwtControls*` functions.
 pub mod swt_controls;
 /// OpenDSS `Vsource*` functions.
