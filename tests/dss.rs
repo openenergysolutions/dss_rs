@@ -32,8 +32,10 @@ fn tap_regulator() {
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
+    let vll = dss_rs::bus::get_vll();
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
+    assert!(vll.is_ok());
 }
 
 #[test]
@@ -57,8 +59,10 @@ fn closeopen_capbank() {
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
+    let vll = dss_rs::bus::get_vll();
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
+    assert!(vll.is_ok());
 }
 
 #[test]
@@ -84,8 +88,10 @@ fn closeopen_switch() {
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
+    let vll = dss_rs::bus::get_vll();
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
+    assert!(vll.is_ok());
 }
 
 #[ignore]
