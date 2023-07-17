@@ -67,7 +67,7 @@ fn closeopen_switch() {
     // thus opening/closing a breaker is the same as below.
     assert!(dss::start(0) != 0);
     assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
-    assert!(circuit::set_active_element("SwtControl.671692").is_ok());
+    assert!(circuit::set_active_element("Line.671692").is_ok());
 
     // Close Switch
     swt_controls::close();
