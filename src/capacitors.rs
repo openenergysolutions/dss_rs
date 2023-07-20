@@ -1,6 +1,8 @@
 extern crate dss_rs_sys;
 use crate::dss_result::Result;
 use dss_rs_sys as dss_c;
+use crate::dss_result::DssError;
+use std::{ptr, slice};
 use std::{convert::TryInto, ffi::CString};
 
 pub unsafe fn get_all_names(
@@ -18,16 +20,23 @@ pub unsafe fn get_first() -> i32 {
     dss_c::Capacitors_Get_First()
 }
 
-pub unsafe fn get_is_delta() -> u16 {
-    dss_c::Capacitors_Get_IsDelta()
+pub fn get_is_delta() -> u16 {
+    unsafe {
+        dss_c::Capacitors_Get_IsDelta()
+    }
 }
 
-pub unsafe fn get_kv() -> f64 {
-    dss_c::Capacitors_Get_kV()
+pub fn get_kv() -> f64 {
+    unsafe {
+        dss_c::Capacitors_Get_kV()
+    }
 }
 
-pub unsafe fn get_kvar() -> f64 {
-    dss_c::Capacitors_Get_kvar()
+pub fn get_kvar() -> f64 {
+    unsafe {
+        dss_c::Capacitors_Get_kvar()
+
+    }
 }
 
 pub unsafe fn get_name() -> *mut ::std::os::raw::c_char {
@@ -82,8 +91,17 @@ pub unsafe fn get_available_steps() -> i32 {
     dss_c::Capacitors_Get_AvailableSteps()
 }
 
-pub unsafe fn get_states(result_ptr: *mut *mut i32, result_count: *mut i32) {
-    dss_c::Capacitors_Get_States(result_ptr, result_count);
+pub fn get_states() -> Result<Vec<i32>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Capacitors_Get_States(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
 }
 
 pub unsafe fn get_states_gr() {
@@ -98,10 +116,15 @@ pub fn set_states(states: Vec<i32>) -> Result<()> {
     Ok(())
 }
 
-pub unsafe fn open() {
-    dss_c::Capacitors_Open();
+pub fn open() {
+    unsafe {
+        dss_c::Capacitors_Open()
+    }
 }
 
-pub unsafe fn close() {
-    dss_c::Capacitors_Close();
+
+pub fn close() {
+    unsafe {
+        dss_c::Capacitors_Close();
+    }
 }
