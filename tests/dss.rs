@@ -44,25 +44,31 @@ fn closeopen_capbank() {
     assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
     assert!(circuit::set_active_element("Capacitor.cap1").is_ok());
 
-    // Close CapBank
-    assert!(capacitors::set_states(vec![1]).is_ok());
+    // Open CapBank
+    //assert!(capacitors::set_states(vec![0]).is_ok());
+    capacitors::open();
     dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
+    let states = capacitors::get_states();
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
+    assert!(states.is_ok());
 
-    // Open CapBank
-    assert!(capacitors::set_states(vec![0]).is_ok());
+    // Close CapBank
+    //assert!(capacitors::set_states(vec![1]).is_ok());
+    capacitors::close();
     dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
     let vll = dss_rs::bus::get_vll();
+    let states = capacitors::get_states();
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
     assert!(vll.is_ok());
+    assert!(states.is_ok());
 }
 
 #[test]
