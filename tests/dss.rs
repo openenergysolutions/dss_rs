@@ -45,7 +45,7 @@ fn closeopen_capbank() {
     assert!(circuit::set_active_element("Capacitor.cap1").is_ok());
 
     // Close CapBank
-    assert!(capacitors::set_states(vec![1]).is_ok());
+    capacitors::close();
     dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
@@ -54,7 +54,7 @@ fn closeopen_capbank() {
     assert!(currents.is_ok());
 
     // Open CapBank
-    assert!(capacitors::set_states(vec![0]).is_ok());
+    capacitors::open();
     dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
