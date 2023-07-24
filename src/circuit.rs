@@ -1,7 +1,7 @@
 extern crate dss_rs_sys;
 use crate::dss_result::{DssError, Result};
 use dss_rs_sys as dss_c;
-use std::{ffi::CString, ptr, slice};
+use std::{ffi::CStr, ffi::CString, ptr, slice};
 
 pub unsafe fn get_name() -> *mut ::std::os::raw::c_char {
     dss_c::Circuit_Get_Name()
@@ -19,8 +19,17 @@ pub unsafe fn get_num_nodes() -> i32 {
     dss_c::Circuit_Get_NumNodes()
 }
 
-pub unsafe fn get_line_losses(result_ptr: *mut *mut f64, result_count: *mut i32) {
-    dss_c::Circuit_Get_LineLosses(result_ptr, result_count);
+pub fn get_line_losses() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Circuit_Get_LineLosses(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
 }
 
 pub unsafe fn get_line_losses_gr() {
@@ -88,8 +97,17 @@ pub unsafe fn get_substation_losses_gr() {
     dss_c::Circuit_Get_SubstationLosses_GR();
 }
 
-pub unsafe fn get_total_power(result_ptr: *mut *mut f64, result_count: *mut i32) {
-    dss_c::Circuit_Get_TotalPower(result_ptr, result_count);
+pub fn get_total_power() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Circuit_Get_Losses(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
 }
 
 pub unsafe fn get_total_power_gr() {
@@ -119,19 +137,42 @@ pub unsafe fn next_pd_element() -> i32 {
     dss_c::Circuit_NextPDElement()
 }
 
-pub unsafe fn get_all_bus_names(
-    result_ptr: *mut *mut *mut ::std::os::raw::c_char,
-    result_count: *mut i32,
-) {
-    dss_c::Circuit_Get_AllBusNames(result_ptr, result_count);
+pub fn get_all_bus_names() -> Result<Vec<String>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Circuit_Get_AllBusNames(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+
+        let vec: Vec<String> = v
+            .iter()
+            .filter_map(|p| CStr::from_ptr(*p).to_str().ok())
+            .collect::<Vec<&str>>()
+            .iter()
+            .map(|s| s.to_string())
+            .collect();
+        Ok(vec)
+    }
 }
 
 pub unsafe fn get_all_bus_names_gr() {
     dss_c::Circuit_Get_AllBusNames_GR();
 }
 
-pub unsafe fn get_all_element_losses(result_ptr: *mut *mut f64, result_count: *mut i32) {
-    dss_c::Circuit_Get_AllElementLosses(result_ptr, result_count);
+pub fn get_all_element_losses() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::Circuit_Get_AllElementLosses(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
 }
 
 pub unsafe fn get_all_element_losses_gr() {

@@ -157,5 +157,4 @@ fn set_storage() {
     let currents = ckt_element::get_powers();
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
-
 }

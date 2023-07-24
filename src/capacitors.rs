@@ -1,9 +1,9 @@
 extern crate dss_rs_sys;
+use crate::dss_result::DssError;
 use crate::dss_result::Result;
 use dss_rs_sys as dss_c;
-use crate::dss_result::DssError;
-use std::{ptr, slice};
 use std::{convert::TryInto, ffi::CString};
+use std::{ptr, slice};
 
 pub unsafe fn get_all_names(
     result_ptr: *mut *mut *mut ::std::os::raw::c_char,
@@ -21,22 +21,15 @@ pub unsafe fn get_first() -> i32 {
 }
 
 pub fn get_is_delta() -> u16 {
-    unsafe {
-        dss_c::Capacitors_Get_IsDelta()
-    }
+    unsafe { dss_c::Capacitors_Get_IsDelta() }
 }
 
 pub fn get_kv() -> f64 {
-    unsafe {
-        dss_c::Capacitors_Get_kV()
-    }
+    unsafe { dss_c::Capacitors_Get_kV() }
 }
 
 pub fn get_kvar() -> f64 {
-    unsafe {
-        dss_c::Capacitors_Get_kvar()
-
-    }
+    unsafe { dss_c::Capacitors_Get_kvar() }
 }
 
 pub unsafe fn get_name() -> *mut ::std::os::raw::c_char {
@@ -117,11 +110,8 @@ pub fn set_states(states: Vec<i32>) -> Result<()> {
 }
 
 pub fn open() {
-    unsafe {
-        dss_c::Capacitors_Open()
-    }
+    unsafe { dss_c::Capacitors_Open() }
 }
-
 
 pub fn close() {
     unsafe {
