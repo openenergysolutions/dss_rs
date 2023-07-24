@@ -1,13 +1,11 @@
 extern crate dss_rs_sys;
-use dss_rs_sys as dss_c;
 use crate::dss_result::Result;
-use std::{ffi::CStr, os::raw::c_char};
+use dss_rs_sys as dss_c;
 use std::convert::TryInto;
+use std::{ffi::CStr, os::raw::c_char};
 
 pub fn get_is_locked() -> u16 {
-    unsafe {
-        dss_c::SwtControls_Get_IsLocked()
-    }
+    unsafe { dss_c::SwtControls_Get_IsLocked() }
 }
 
 pub fn set_is_locked(value: u16) {
@@ -31,16 +29,11 @@ pub fn get_switched_obj() -> Result<String> {
 }
 
 pub fn get_switched_term() -> i32 {
-    unsafe {
-        dss_c::SwtControls_Get_SwitchedTerm()
-    }
+    unsafe { dss_c::SwtControls_Get_SwitchedTerm() }
 }
 
 pub fn get_state() -> i32 {
-    unsafe {
-        dss_c::SwtControls_Get_State()
-
-    }
+    unsafe { dss_c::SwtControls_Get_State() }
 }
 
 pub fn set_state(value: i32) {
