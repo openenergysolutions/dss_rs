@@ -3,6 +3,18 @@ use crate::dss_result::{DssError, Result};
 use dss_rs_sys as dss_c;
 use std::{ptr, slice};
 
+pub fn enable() {
+    unsafe {
+        dss_c::CktElement_Set_Enabled(true.into());
+    }
+}
+
+pub fn disable() {
+    unsafe {
+        dss_c::CktElement_Set_Enabled(false.into());
+    }
+}
+
 pub fn get_powers() -> Result<Vec<f64>> {
     unsafe {
         let mut result_cnt = 0;
