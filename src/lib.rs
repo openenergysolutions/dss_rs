@@ -31,6 +31,8 @@ pub mod generators;
 pub mod loads;
 /// OpenDSS `Reclosers*` functions.
 pub mod reclosers;
+/// OpenDSS `Relays*` functions.
+pub mod relays;
 /// OpenDSS `RegControls*` functions.
 pub mod reg_controls;
 /// OpenDSS `Storages*` functions.
