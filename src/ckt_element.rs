@@ -15,6 +15,18 @@ pub fn disable() {
     }
 }
 
+pub fn open(term: i32, phs: i32) {
+    unsafe {
+        dss_c::CktElement_Open(term, phs);
+    }
+}
+
+pub fn close(term: i32, phs: i32) {
+    unsafe {
+        dss_c::CktElement_Close(term, phs);
+    }
+}
+
 pub fn get_powers() -> Result<Vec<f64>> {
     unsafe {
         let mut result_cnt = 0;
@@ -38,5 +50,11 @@ pub fn get_voltages_mag_ang() -> Result<Vec<f64>> {
         }
         let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
         Ok(v)
+    }
+}
+
+pub fn is_open(term: i32, phs: i32) -> u16 {
+    unsafe {
+        dss_c::CktElement_IsOpen(term, phs)
     }
 }

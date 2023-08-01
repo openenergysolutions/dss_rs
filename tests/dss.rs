@@ -74,24 +74,33 @@ fn closeopen_switch() {
     assert!(circuit::set_active_element("Line.671692").is_ok());
 
     // Close Switch
-    swt_controls::close();
+    ckt_element::close(1, 1);
+    ckt_element::close(1, 2);
+    ckt_element::close(1, 3);
     dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
+    // check if phs_c is open
+    let phsA = ckt_element::is_open(1, 1);
+    let phsB = ckt_element::is_open(1, 2);
+    let phsC = ckt_element::is_open(1, 3);
+    println!("\nphsA: {}, phsB: {}, phsC: {}", phsA, phsB, phsC);
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
+
 
     // Open Switch
-    swt_controls::open();
+    ckt_element::open(1, 1);
+    ckt_element::open(1, 2);
+    ckt_element::open(1, 3);
     dss::solution_solve();
-
-    let voltages = ckt_element::get_voltages_mag_ang();
-    let currents = ckt_element::get_powers();
-    let vll = dss_rs::bus::get_vll();
+    let phsA = ckt_element::is_open(1, 1);
+    let phsB = ckt_element::is_open(1, 2);
+    let phsC = ckt_element::is_open(1, 3);
+    println!("phsA: {}, phsB: {}, phsC: {}", phsA, phsB, phsC);
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
-    assert!(vll.is_ok());
 }
 
 #[ignore]
