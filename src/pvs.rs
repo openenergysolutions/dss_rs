@@ -20,9 +20,9 @@ pub fn set_kvar(value: f64) {
 }
 
 
-pub fn set_kw(value: f64) {
+pub fn set_kva_rated(value: f64) {
   unsafe {
-      dss_c::PVSystems_Set_kW(value);
+      dss_c::PVSystems_Set_kVArated(value);
   }
 }
 

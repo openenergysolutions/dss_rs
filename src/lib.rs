@@ -29,6 +29,8 @@ pub mod dss_result;
 pub mod generators;
 /// OpenDSS `Loads*` functions.
 pub mod loads;
+/// OpenDSS `PV*` functions.
+pub mod pvs;
 /// OpenDSS `Reclosers*` functions.
 pub mod reclosers;
 /// OpenDSS `Relays*` functions.

@@ -30,3 +30,8 @@ This project is unaffiliated with the DSS_Extensions organization.
 Builds require the use of a `.devcontainer`
 
 [DSS_EXTENSIONS]:https://github.com/dss-extensions/dss_capi
+
+
+## Testing
+
+cargo test -- --test-threads=1
