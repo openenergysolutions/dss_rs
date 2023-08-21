@@ -1,4 +1,4 @@
-use dss_rs::{capacitors, circuit, ckt_element, dss, loads, reg_controls, swt_controls};
+use dss_rs::{capacitors, circuit, ckt_element, dss, loads, pvs, reg_controls, swt_controls};
 
 #[test]
 fn shared_lib_call() {
@@ -160,6 +160,30 @@ fn set_storage() {
 
     // Discharge storage
     dss_rs::storages::set_state(1);
+    dss::solution_solve();
+
+    let voltages = ckt_element::get_voltages_mag_ang();
+    let currents = ckt_element::get_powers();
+    assert!(voltages.is_ok());
+    assert!(currents.is_ok());
+}
+
+
+#[test]
+fn set_pv() {
+    assert!(dss::start(0) != 0);
+    assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
+    assert!(circuit::set_active_element("PVSystem.PV1").is_ok());
+    
+    let voltages = ckt_element::get_voltages_mag_ang();
+    let currents = ckt_element::get_powers();
+    assert!(voltages.is_ok());
+    assert!(currents.is_ok());
+
+    // Set P, Q, PF
+    pvs::set_kvar(5.9);
+    pvs::set_kva_rated(5.0);
+    pvs::set_pf(3.0);
     dss::solution_solve();
 
     let voltages = ckt_element::get_voltages_mag_ang();
