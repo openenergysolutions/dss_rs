@@ -15,9 +15,9 @@ pub fn disable() {
     }
 }
 
-pub fn get_enabled() {
+pub fn get_enabled() -> u16 {
     unsafe {
-        dss_c::CktElement_Get_Enabled();
+        dss_c::CktElement_Get_Enabled()
     }
 }
 
