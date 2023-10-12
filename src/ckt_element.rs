@@ -15,6 +15,12 @@ pub fn disable() {
     }
 }
 
+pub fn get_enabled() -> u16 {
+    unsafe {
+        dss_c::CktElement_Get_Enabled()
+    }
+}
+
 pub fn open(term: i32, phs: i32) {
     unsafe {
         dss_c::CktElement_Open(term, phs);
