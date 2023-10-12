@@ -39,3 +39,11 @@ pub fn set_normal_state(value: i32) {
         dss_c::Reclosers_Set_NormalState(value);
     }
 }
+
+pub fn set_name(name: &str) -> Result<()> {
+    let name = std::ffi::CString::new(name).unwrap();
+    unsafe {
+        dss_c::Reclosers_Set_Name(name.as_ptr());
+    }
+    Ok(())
+}

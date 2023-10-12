@@ -4,6 +4,7 @@ use crate::dss_result::Result;
 use dss_rs_sys as dss_c;
 use std::{convert::TryInto, ffi::CString};
 use std::{ptr, slice};
+use raw_parts::RawParts;
 
 pub unsafe fn get_all_names(
     result_ptr: *mut *mut *mut ::std::os::raw::c_char,
@@ -102,9 +103,10 @@ pub unsafe fn get_states_gr() {
 }
 
 pub fn set_states(states: Vec<i32>) -> Result<()> {
+    let RawParts { ptr, length, .. } = RawParts::from_vec(states);
     unsafe {
-        let (value_ptr, value_count, _) = states.into_raw_parts();
-        dss_c::Capacitors_Set_States(value_ptr, value_count.try_into()?);
+        let ptr = ptr as *mut i32;
+        dss_c::Capacitors_Set_States(ptr, length.try_into()?);
     }
     Ok(())
 }

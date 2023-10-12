@@ -53,6 +53,32 @@ pub fn get_voltages_mag_ang() -> Result<Vec<f64>> {
     }
 }
 
+pub fn get_currents_mag_ang() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::CktElement_Get_CurrentsMagAng(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
+}
+
+pub fn get_total_powers() -> Result<Vec<f64>> {
+    unsafe {
+        let mut result_cnt = 0;
+        let mut result_ptr = ptr::null_mut();
+        dss_c::CktElement_Get_TotalPowers(&mut result_ptr, &mut result_cnt);
+        if result_cnt == 0 || result_ptr == ptr::null_mut() {
+            return Err(DssError::NullCPtr);
+        }
+        let v = slice::from_raw_parts(result_ptr, result_cnt as usize).to_vec();
+        Ok(v)
+    }
+}
+
 pub fn is_open(term: i32, phs: i32) -> u16 {
     unsafe {
         dss_c::CktElement_IsOpen(term, phs)

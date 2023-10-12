@@ -12,6 +12,7 @@ repository = "github.com/OES/dss_rs"
 [dependencies]
 dss_rs_sys = { path = "dss_rs_sys" }
 libc = "0.2.126"
+raw-parts = "2.0.0"
 
 [features]
 default = ["unsafe"]
