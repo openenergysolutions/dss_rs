@@ -1,4 +1,4 @@
-#![feature(vec_into_raw_parts)]
+//#![feature(vec_into_raw_parts)]
 /// A non-`unsafe` (re: safe) Rust API for [DSS_Extensions'][DSS_EXTENSIONS] `dss_capi`.
 ///
 /// [DSS_EXTENSIONS]:https://dss-extensions.org/
