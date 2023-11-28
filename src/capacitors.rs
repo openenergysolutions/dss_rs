@@ -2,9 +2,9 @@ extern crate dss_rs_sys;
 use crate::dss_result::DssError;
 use crate::dss_result::Result;
 use dss_rs_sys as dss_c;
+use raw_parts::RawParts;
 use std::{convert::TryInto, ffi::CString};
 use std::{ptr, slice};
-use raw_parts::RawParts;
 
 pub unsafe fn get_all_names(
     result_ptr: *mut *mut *mut ::std::os::raw::c_char,
