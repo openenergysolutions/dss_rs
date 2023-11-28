@@ -1,4 +1,4 @@
-use dss_rs::{capacitors, circuit, ckt_element, dss, loads, pvs, reg_controls, swt_controls};
+use dss_rs::{capacitors, circuit, ckt_element, dss, loads, pvs, reg_controls};
 
 #[test]
 fn shared_lib_call() {
@@ -82,23 +82,22 @@ fn closeopen_switch() {
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
     // check if phs_c is open
-    let phsA = ckt_element::is_open(1, 1);
-    let phsB = ckt_element::is_open(1, 2);
-    let phsC = ckt_element::is_open(1, 3);
-    println!("\nphsA: {}, phsB: {}, phsC: {}", phsA, phsB, phsC);
+    let phs_a = ckt_element::is_open(1, 1);
+    let phs_b = ckt_element::is_open(1, 2);
+    let phs_c = ckt_element::is_open(1, 3);
+    println!("\nphs_a: {}, phs_b: {}, phs_c: {}", phs_a, phs_b, phs_c);
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
-
 
     // Open Switch
     ckt_element::open(1, 1);
     ckt_element::open(1, 2);
     ckt_element::open(1, 3);
     dss::solution_solve();
-    let phsA = ckt_element::is_open(1, 1);
-    let phsB = ckt_element::is_open(1, 2);
-    let phsC = ckt_element::is_open(1, 3);
-    println!("phsA: {}, phsB: {}, phsC: {}", phsA, phsB, phsC);
+    let phs_a = ckt_element::is_open(1, 1);
+    let phs_b = ckt_element::is_open(1, 2);
+    let phs_c = ckt_element::is_open(1, 3);
+    println!("phs_a: {}, phs_b: {}, phs_c: {}", phs_a, phs_b, phs_c);
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
 }
@@ -144,8 +143,13 @@ fn set_storage() {
     assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
     assert!(circuit::set_active_element("Storage.s680").is_ok());
 
+    dss_rs::storages::set_kw(200.0).expect("Failed to set kW for Storage.s680");
+    dss::solution_solve();
+    let kw = dss_rs::storages::get_kw().unwrap();
+
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
+
     assert!(voltages.is_ok());
     assert!(currents.is_ok());
 
@@ -168,13 +172,12 @@ fn set_storage() {
     assert!(currents.is_ok());
 }
 
-
 #[test]
 fn set_pv() {
     assert!(dss::start(0) != 0);
     assert!(dss::text_set_command("redirect tests/data/IEEE13Nodeckt.dss").is_ok());
     assert!(circuit::set_active_element("PVSystem.PV1").is_ok());
-    
+
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
     assert!(voltages.is_ok());

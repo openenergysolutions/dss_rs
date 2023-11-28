@@ -1,7 +1,7 @@
 extern crate dss_rs_sys;
 use dss_rs_sys as dss_c;
-use crate::{active_class, ckt_element, dss, dss_result::{Result, DssError}, circuit};
-use std::{ptr, convert::TryInto, ffi::CString};
+use crate::{ckt_element, dss, dss_result::{Result, DssError}};
+use std::{ptr, convert::TryInto};
 
 pub fn get_pu_soc() -> f64 {
     unsafe { dss_c::Storages_Get_puSOC() }
@@ -60,8 +60,10 @@ pub fn get_kw() -> Result<f64> {
             return Err(DssError::NullCPtr);
         }
 
-        let property_idx = (ckt_element::get_all_property_names().iter().position(|p| p == "kW").unwrap() + 1) as i32;
+        let property_names = ckt_element::get_all_property_names();
+        let property_idx = (property_names.iter().position(|p| p == "kW").unwrap() + 1) as i32;
         let kw = dss_c::Obj_GetFloat64(element_ptr, property_idx.try_into().unwrap());
+
         Ok(kw)
     }
 }
