@@ -1,7 +1,7 @@
 extern crate dss_rs_sys;
 use crate::dss_result::{DssError, Result};
 use dss_rs_sys as dss_c;
-use std::{ptr, slice};
+use std::{ffi::CStr, os::raw::c_char, ptr, slice};
 
 pub fn enable() {
     unsafe {
@@ -16,9 +16,7 @@ pub fn disable() {
 }
 
 pub fn get_enabled() -> u16 {
-    unsafe {
-        dss_c::CktElement_Get_Enabled()
-    }
+    unsafe { dss_c::CktElement_Get_Enabled() }
 }
 
 pub fn open(term: i32, phs: i32) {
@@ -86,7 +84,20 @@ pub fn get_total_powers() -> Result<Vec<f64>> {
 }
 
 pub fn is_open(term: i32, phs: i32) -> u16 {
+    unsafe { dss_c::CktElement_IsOpen(term, phs) }
+}
+
+pub fn get_all_property_names() -> Vec<String> {
     unsafe {
-        dss_c::CktElement_IsOpen(term, phs)
+        let ctx = dss_c::ctx_Get_Prime();
+        let mut result_ptr: *mut *mut c_char = ptr::null_mut();
+        let mut v: [i32; 4] = [0, 0, 0, 0];
+        dss_c::ctx_CktElement_Get_AllPropertyNames(ctx, &mut result_ptr, v.as_ptr() as *mut i32);
+        let vec_strs = slice::from_raw_parts(result_ptr, v[0] as usize)
+            .to_vec()
+            .iter()
+            .filter_map(|ptr| CStr::from_ptr(*ptr).to_str().ok().map(|s| s.to_string()))
+            .collect();
+        vec_strs
     }
 }

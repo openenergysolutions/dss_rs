@@ -1,5 +1,5 @@
 {
-	"name": "rpcdss",
+	"name": "dss_rs",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},

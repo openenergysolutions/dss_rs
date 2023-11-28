@@ -1,5 +1,5 @@
-use dss_rs_sys as dss_c;
 use crate::dss_result::Result;
+use dss_rs_sys as dss_c;
 use std::ffi::CString;
 
 pub fn set_name(value: &str) -> Result<()> {
@@ -8,7 +8,7 @@ pub fn set_name(value: &str) -> Result<()> {
         dss_c::PVSystems_Set_Name(c_str.into_raw());
     }
     Ok(())
-  }
+}
 
 pub fn set_kw(value: f64) {
     unsafe {

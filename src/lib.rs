@@ -1,7 +1,9 @@
-//#![feature(vec_into_raw_parts)]
+#![feature(vec_into_raw_parts)]
 /// A non-`unsafe` (re: safe) Rust API for [DSS_Extensions'][DSS_EXTENSIONS] `dss_capi`.
 ///
 /// [DSS_EXTENSIONS]:https://dss-extensions.org/
+///
+///
 
 /// OpenDSS `ActiveClass*` functions.
 pub mod active_class;
@@ -33,10 +35,10 @@ pub mod loads;
 pub mod pvs;
 /// OpenDSS `Reclosers*` functions.
 pub mod reclosers;
-/// OpenDSS `Relays*` functions.
-pub mod relays;
 /// OpenDSS `RegControls*` functions.
 pub mod reg_controls;
+/// OpenDSS `Relays*` functions.
+pub mod relays;
 /// OpenDSS `Storages*` functions.
 pub mod storages;
 /// OpenDSS `SwtControls*` functions.

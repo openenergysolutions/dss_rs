@@ -313,8 +313,11 @@ pub unsafe fn get_all_node_names_by_phase_gr(phase: i32) {
     dss_c::Circuit_Get_AllNodeNamesByPhase_GR(phase);
 }
 
-pub unsafe fn set_active_class(class_name: *mut ::std::os::raw::c_char) -> i32 {
-    dss_c::Circuit_SetActiveClass(class_name)
+pub fn set_active_class(name: &str) -> Result<i32> {
+    unsafe {
+        let c_str = CString::new(name)?;
+        Ok(dss_c::Circuit_SetActiveClass(c_str.into_raw()))
+    }
 }
 
 pub unsafe fn first_element() -> i32 {

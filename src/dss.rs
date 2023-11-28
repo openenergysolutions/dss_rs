@@ -47,3 +47,10 @@ pub fn check_error_msg() -> Option<String> {
         Some(String::from(raw_str.to_str().ok()?))
     }
 }
+
+pub fn set_active_class(name: &str) -> Result<i32> {
+    unsafe {
+        let c_str = CString::new(name)?;
+        Ok(dss_c::DSS_SetActiveClass(c_str.into_raw()))
+    }
+}
