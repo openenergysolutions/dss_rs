@@ -144,8 +144,16 @@ fn set_storage() {
     assert!(circuit::set_active_element("Storage.s680").is_ok());
 
     dss_rs::storages::set_kw(200.0).expect("Failed to set kW for Storage.s680");
+    dss_rs::storages::set_kvar(10.0).expect("Failed to set kVar for Storage.s680");
+    dss_rs::storages::set_pf(50.0).expect("Failed to set PF for Storage.s680");
+
     dss::solution_solve();
-    let kw = dss_rs::storages::get_kw().unwrap();
+    let kw = dss_rs::storages::get_kw();
+    let kvar = dss_rs::storages::get_kvar();
+    let pf = dss_rs::storages::get_pf();
+    assert!(kw.is_ok());
+    assert!(kvar.is_ok());
+    assert!(pf.is_ok());
 
     let voltages = ckt_element::get_voltages_mag_ang();
     let currents = ckt_element::get_powers();
