@@ -87,6 +87,7 @@ pub fn is_open(term: i32, phs: i32) -> u16 {
     unsafe { dss_c::CktElement_IsOpen(term, phs) }
 }
 
+#[allow(unused_mut)]
 pub fn get_all_property_names() -> Vec<String> {
     unsafe {
         let ctx = dss_c::ctx_Get_Prime();

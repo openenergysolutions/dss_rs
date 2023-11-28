@@ -4,7 +4,7 @@ use crate::{
     dss_result::{DssError, Result},
 };
 use dss_rs_sys as dss_c;
-use std::{convert::TryInto, ffi::c_void, ptr};
+use std::{ffi::c_void, ptr};
 
 const KW: &'static str = "kw";
 const KVAR: &'static str = "kvar";
@@ -52,7 +52,7 @@ pub fn get_kw() -> Result<f64> {
             .position(|p| p.to_lowercase() == KW)
             .unwrap()
             + 1) as i32;
-        let kw = dss_c::Obj_GetFloat64(element_ptr, property_idx.try_into().unwrap());
+        let kw = dss_c::Obj_GetFloat64(element_ptr, property_idx);
         Ok(kw)
     }
 }
@@ -80,7 +80,7 @@ pub fn get_kvar() -> Result<f64> {
             .position(|p| p.to_lowercase() == KVAR)
             .unwrap()
             + 1) as i32;
-        let kw = dss_c::Obj_GetFloat64(element_ptr, property_idx.try_into().unwrap());
+        let kw = dss_c::Obj_GetFloat64(element_ptr, property_idx);
         Ok(kw)
     }
 }
@@ -108,7 +108,7 @@ pub fn get_pf() -> Result<f64> {
             .position(|p| p.to_lowercase() == PF)
             .unwrap()
             + 1) as i32;
-        let kw = dss_c::Obj_GetFloat64(element_ptr, property_idx.try_into().unwrap());
+        let kw = dss_c::Obj_GetFloat64(element_ptr, property_idx);
         Ok(kw)
     }
 }
