@@ -74,7 +74,6 @@ pub fn get_kvar() -> Result<f64> {
     unsafe {
         let element_ptr = get_storage_ptr()?;
         let property_names = ckt_element::get_all_property_names();
-        println!("{property_names:#?}");
         let property_idx = (property_names
             .iter()
             .position(|p| p.to_lowercase() == KVAR)
@@ -102,7 +101,6 @@ pub fn get_pf() -> Result<f64> {
     unsafe {
         let element_ptr = get_storage_ptr()?;
         let property_names = ckt_element::get_all_property_names();
-        println!("{property_names:#?}");
         let property_idx = (property_names
             .iter()
             .position(|p| p.to_lowercase() == PF)
